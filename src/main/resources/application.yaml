@@ -1,0 +1,50 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: movies-api
+  data:
+    rest:
+      base-path: /api/
+      detection-strategy: annotated
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movies-api
+    username: postgres
+    password: postgrespw
+
+  docker:
+    compose:
+      file: src/main/docker/docker-compose.yaml
+      readiness:
+        tcp:
+          connect-timeout: 10s
+          read-timeout: 5s
+      lifecycle-management: start-and-stop
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${spring.application.name}
+
+  flyway:
+    default-schema: ${spring.application.name}
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  sql:
+    init:
+      mode: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    org.springframework.data.*.*: info
+    org.hibernate.cache: info
