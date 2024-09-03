@@ -1,7 +1,6 @@
 package io.vgrente.movies_api.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import io.vgrente.movies_api.dto.ActorDTO
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.PastOrPresent
@@ -14,20 +13,24 @@ import java.util.Objects.isNull
 data class Actor(
     @field:NotNull
     @field:Size(min = 2, max = 50)
+    @JsonProperty("first_name")
     @Column(name = "first_name")
     var firstName: String,
 
     @field:NotNull
     @field:Size(min = 2, max = 50)
+    @JsonProperty("last_name")
     @Column(name = "last_name")
     var lastName: String,
 
     @field:NotNull
     @field:PastOrPresent
+    @JsonProperty("birth_date")
     @Column(name = "birth_date")
     var birthDate: LocalDate,
 
     @field:PastOrPresent
+    @JsonProperty("death_date")
     @Column(name = "death_date")
     var deathDate: LocalDate?
 
@@ -49,12 +52,6 @@ data class Actor(
 
     override fun toString(): String {
         return "Actor(id=$id, firstName='$firstName', lastName='$lastName')"
-    }
-
-    fun toDTO(): ActorDTO {
-        return ActorDTO(this.id!!, this.firstName, this.lastName, this.birthDate, this.deathDate, this.isAlive(),
-            this.characters!!.map { it.toDTO() }
-        )
     }
 }
 

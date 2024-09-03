@@ -1,6 +1,6 @@
 package io.vgrente.movies_api.domain
 
-import io.vgrente.movies_api.dto.CharacterDTO
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 
@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull
 class Character(
 
     @NotNull
+    @JsonProperty("name")
     @Column(name = "name")
     var name: String?
 
@@ -33,8 +34,4 @@ class Character(
         inverseJoinColumns = [JoinColumn(name = "movie_id")]
     )
     var movies: MutableSet<Movie>? = mutableSetOf()
-
-    fun toDTO(): CharacterDTO {
-        return CharacterDTO(this.id!!, this.name!!, this.movies!!.map { it.toDTO() }.toMutableSet())
-    }
 }

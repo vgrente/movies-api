@@ -1,6 +1,6 @@
 package io.vgrente.movies_api.domain
 
-import io.vgrente.movies_api.dto.DirectorDTO
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 
@@ -9,10 +9,12 @@ import jakarta.validation.constraints.NotNull
 class Director(
 
     @NotNull
+    @JsonProperty("first_name")
     @Column(name = "first_name")
     var firstName: String,
 
     @NotNull
+    @JsonProperty("last_name")
     @Column(name = "last_name")
     var lastName: String
 
@@ -23,8 +25,4 @@ class Director(
 
     @OneToMany(mappedBy = "director")
     var movies: MutableSet<Movie>? = mutableSetOf()
-
-    fun toDTO() :DirectorDTO{
-        return DirectorDTO(this.id!!,this.firstName,this.lastName)
-    }
 }

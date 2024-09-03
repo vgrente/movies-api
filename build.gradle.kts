@@ -8,7 +8,6 @@ plugins {
 	kotlin("plugin.jpa") version "1.9.24"
 	kotlin("jvm") version "1.9.24"
 	kotlin("plugin.spring") version "1.9.24"
-//	kotlin("plugin.serialization") version "1.9.24"
 }
 
 group = "io.vgrente"
@@ -28,14 +27,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
-	implementation("org.springframework.boot:spring-boot-starter-hateoas")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.data:spring-data-rest-hal-explorer")
-	implementation("org.springframework.data:spring-data-commons")
-	implementation("org.redisson:redisson-hibernate-6:3.35.0")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-//	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -49,12 +42,6 @@ dependencies {
 	testImplementation("org.testcontainers:postgresql")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
-
-//hibernate {
-//	enhancement {
-//		enableAssociationManagement = true
-//	}
-//}
 
 kotlin {
 	compilerOptions {

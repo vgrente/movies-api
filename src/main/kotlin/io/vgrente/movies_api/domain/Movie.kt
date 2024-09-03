@@ -1,6 +1,6 @@
 package io.vgrente.movies_api.domain
 
-import io.vgrente.movies_api.dto.MovieDTO
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
@@ -10,14 +10,17 @@ import java.time.LocalDate
 class Movie(
 
     @NotNull
+    @JsonProperty("title")
     @Column(name = "title")
     var title: String,
 
     @NotNull
+    @JsonProperty("release_date")
     @Column(name = "release_date")
     var releaseDate: LocalDate,
 
     @NotNull
+    @JsonProperty("director_id")
     @ManyToOne
     @JoinColumn(name = "director_id")
     var director: Director
@@ -35,8 +38,4 @@ class Movie(
         inverseJoinColumns = [JoinColumn(name = "character_id")]
     )
     var characters: MutableSet<Character>? = mutableSetOf()
-
-    fun toDTO(): MovieDTO {
-        return MovieDTO(this.id!!, this.title, this.releaseDate, this.director.toDTO())
-    }
 }

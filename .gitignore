@@ -38,3 +38,7 @@ out/
 
 ### Kotlin ###
 .kotlin
+/gradle/
+
+### MacOS ###
+.DS_STORE
