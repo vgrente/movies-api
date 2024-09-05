@@ -3,10 +3,13 @@ package io.vgrente.movies_api.domain
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
+import org.hibernate.annotations.Cache
+import org.hibernate.annotations.CacheConcurrencyStrategy
 import java.time.LocalDate
 
 @Entity
 @Table(name = "movie")
+@Cache(region = "movieCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 class Movie(
 
     @NotNull

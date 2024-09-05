@@ -1,4 +1,9 @@
 spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
   main:
     allow-bean-definition-overriding: true
   application:
@@ -7,7 +12,9 @@ spring:
     rest:
       base-path: /api/
       detection-strategy: annotated
-
+    redis:
+      port: 6379
+      host: localhost
   datasource:
     url: jdbc:postgresql://localhost:5432/movies-api
     username: postgres
@@ -23,8 +30,11 @@ spring:
       lifecycle-management: start-and-stop
 
   jpa:
+    show-sql: true
     properties:
       hibernate:
+        cache:
+          use_second_level_cache: true
         default_schema: ${spring.application.name}
 
   flyway:
@@ -46,5 +56,6 @@ springdoc:
 
 logging:
   level:
-    org.springframework.data.*.*: info
-    org.hibernate.cache: info
+    org.springframework.data.*.*: trace
+    org.springframework.cache.*: trace
+    org.hibernate.cache: DEBUG

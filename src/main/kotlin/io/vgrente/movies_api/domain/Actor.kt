@@ -5,11 +5,15 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.PastOrPresent
 import jakarta.validation.constraints.Size
+import org.hibernate.annotations.CacheConcurrencyStrategy
+import org.hibernate.annotations.Cache
+import java.io.Serializable
 import java.time.LocalDate
 import java.util.Objects.isNull
 
 @Entity
 @Table(name = "actor")
+@Cache(region = "actorCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 data class Actor(
     @field:NotNull
     @field:Size(min = 2, max = 50)
@@ -34,7 +38,7 @@ data class Actor(
     @Column(name = "death_date")
     var deathDate: LocalDate?
 
-) {
+) :Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
