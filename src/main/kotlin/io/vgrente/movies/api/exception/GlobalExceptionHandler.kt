@@ -1,5 +1,6 @@
 package io.vgrente.movies.api.exception
 
+import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -9,20 +10,6 @@ import java.time.LocalDateTime
 
 @ControllerAdvice
 class GlobalExceptionHandler {
-    @ExceptionHandler(Exception::class)
-    fun handleAllExceptions(
-        ex: Exception,
-        request: WebRequest,
-    ): ResponseEntity<ErrorDetails> {
-        val errorDetails =
-            ErrorDetails(
-                LocalDateTime.now(),
-                ex.message ?: "Unexpected error",
-                request.getDescription(false),
-            )
-        return ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR)
-    }
-
     @ExceptionHandler(ResourceNotFoundException::class)
     fun handleResourceNotFoundException(
         ex: ResourceNotFoundException,

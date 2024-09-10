@@ -1,6 +1,7 @@
 package io.vgrente.movies.api.config
 
 import io.vgrente.movies.api.domain.Actor
+import io.vgrente.movies.api.domain.Character
 import io.vgrente.movies.api.domain.Director
 import io.vgrente.movies.api.domain.Movie
 import org.springframework.context.annotation.Bean

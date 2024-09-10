@@ -1,13 +1,19 @@
 package io.vgrente.movies.api
 
+import io.vgrente.AbstractIT
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.Import
 
-@Import(TestcontainersConfiguration::class)
 @SpringBootTest
-class MoviesApiApplicationTests {
+class MoviesApiApplicationTests :
+    AbstractIT() {
+
     @Test
     fun contextLoads() {
+    }
+
+    @Test
+    fun main() {
+        MoviesApiApplication()
     }
 }

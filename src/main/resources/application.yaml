@@ -34,7 +34,11 @@ spring:
     properties:
       hibernate:
         cache:
+          redisson:
+            config: redisson.yaml
           use_second_level_cache: true
+          region:
+            factory_class: 'org.redisson.hibernate.RedissonRegionFactory'
         default_schema: ${spring.application.name}
 
   flyway:
