@@ -13,17 +13,16 @@ import org.testcontainers.utility.DockerImageName
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 abstract class AbstractIT {
-
     companion object {
-
         @Container
-        private val container = PostgreSQLContainer(DockerImageName.parse("postgres:15-alpine"))
-            .apply {
-                withDatabaseName("test")
-                withUsername("test")
-                withPassword("test")
-                start()
-            }
+        private val container =
+            PostgreSQLContainer(DockerImageName.parse("postgres:15-alpine"))
+                .apply {
+                    withDatabaseName("test")
+                    withUsername("test")
+                    withPassword("test")
+                    start()
+                }
 
         @JvmStatic
         @DynamicPropertySource

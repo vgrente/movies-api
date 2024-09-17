@@ -1,7 +1,15 @@
-package io.vgrente.movies_api.domain
+package io.vgrente.movies.api.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.JoinTable
+import jakarta.persistence.ManyToMany
+import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.Cache
 import org.hibernate.annotations.CacheConcurrencyStrategy
@@ -10,14 +18,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy
 @Table(name = "character")
 @Cache(region = "characterCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 class Character(
-
     @NotNull
     @JsonProperty("name")
     @Column(name = "name")
-    var name: String?
-
+    var name: String?,
 ) {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
@@ -26,7 +31,7 @@ class Character(
     @JoinTable(
         name = "actor_character",
         joinColumns = [JoinColumn(name = "character_id")],
-        inverseJoinColumns = [JoinColumn(name = "actor_id")]
+        inverseJoinColumns = [JoinColumn(name = "actor_id")],
     )
     var actors: MutableSet<Actor>? = mutableSetOf()
 
@@ -34,7 +39,7 @@ class Character(
     @JoinTable(
         name = "movie_character",
         joinColumns = [JoinColumn(name = "character_id")],
-        inverseJoinColumns = [JoinColumn(name = "movie_id")]
+        inverseJoinColumns = [JoinColumn(name = "movie_id")],
     )
     var movies: MutableSet<Movie>? = mutableSetOf()
 }
