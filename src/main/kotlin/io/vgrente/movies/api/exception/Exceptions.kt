@@ -1,4 +1,4 @@
-package io.vgrente.movies_api.exception
+package io.vgrente.movies.api.exception
 
 class ResourceNotFoundException(message: String) : RuntimeException(message)
 
