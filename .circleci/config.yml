@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  gradle: circleci/gradle@3.0.0
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/openjdk:23.0.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: echo java --version
+      - run: echo gradle --version
+      - run: gradle build
+
+workflows:
+  version: 2.1
+  workflow:
+    jobs:
+      - build-and-test
