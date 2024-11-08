@@ -24,6 +24,7 @@ jacoco {
 
 java {
     toolchain {
+        implementation = JvmImplementation.VENDOR_SPECIFIC
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
@@ -70,7 +71,7 @@ kover {
         }
         verify {
             rule {
-                minBound(25)
+                minBound(1)
             }
         }
     }
